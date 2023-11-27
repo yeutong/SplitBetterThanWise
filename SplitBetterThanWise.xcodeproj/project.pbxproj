@@ -14,6 +14,8 @@
 		E5FCE0982B14A13B002F86CB /* SplitBetterThanWiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FCE0972B14A13B002F86CB /* SplitBetterThanWiseTests.swift */; };
 		E5FCE0A22B14A13B002F86CB /* SplitBetterThanWiseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FCE0A12B14A13B002F86CB /* SplitBetterThanWiseUITests.swift */; };
 		E5FCE0A42B14A13B002F86CB /* SplitBetterThanWiseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FCE0A32B14A13B002F86CB /* SplitBetterThanWiseUITestsLaunchTests.swift */; };
+		E5FCE0B12B14A217002F86CB /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FCE0B02B14A217002F86CB /* DashboardView.swift */; };
+		E5FCE0B32B14A247002F86CB /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FCE0B22B14A247002F86CB /* AddExpenseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		E5FCE09D2B14A13B002F86CB /* SplitBetterThanWiseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitBetterThanWiseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5FCE0A12B14A13B002F86CB /* SplitBetterThanWiseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBetterThanWiseUITests.swift; sourceTree = "<group>"; };
 		E5FCE0A32B14A13B002F86CB /* SplitBetterThanWiseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBetterThanWiseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E5FCE0B02B14A217002F86CB /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		E5FCE0B22B14A247002F86CB /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				E5FCE0862B14A139002F86CB /* SplitBetterThanWiseApp.swift */,
+				E5FCE0B02B14A217002F86CB /* DashboardView.swift */,
+				E5FCE0B22B14A247002F86CB /* AddExpenseView.swift */,
 				E5FCE0882B14A139002F86CB /* ContentView.swift */,
 				E5FCE08A2B14A13B002F86CB /* Assets.xcassets */,
 				E5FCE08C2B14A13B002F86CB /* Preview Content */,
@@ -258,7 +264,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5FCE0892B14A139002F86CB /* ContentView.swift in Sources */,
+				E5FCE0B12B14A217002F86CB /* DashboardView.swift in Sources */,
 				E5FCE0872B14A139002F86CB /* SplitBetterThanWiseApp.swift in Sources */,
+				E5FCE0B32B14A247002F86CB /* AddExpenseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
