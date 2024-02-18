@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E57837292B822F5A0078BFAE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57837282B822F5A0078BFAE /* UserModel.swift */; };
+		E578372B2B822F7C0078BFAE /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E578372A2B822F7C0078BFAE /* GroupModel.swift */; };
+		E578372D2B822F8F0078BFAE /* ExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E578372C2B822F8F0078BFAE /* ExpenseModel.swift */; };
 		E5C389FC2B81EB54003955B6 /* TTSplitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C389FB2B81EB54003955B6 /* TTSplitApp.swift */; };
 		E5C389FE2B81EB54003955B6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C389FD2B81EB54003955B6 /* ContentView.swift */; };
 		E5C38A002B81EB57003955B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5C389FF2B81EB57003955B6 /* Assets.xcassets */; };
@@ -25,6 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E57837282B822F5A0078BFAE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		E578372A2B822F7C0078BFAE /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
+		E578372C2B822F8F0078BFAE /* ExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseModel.swift; sourceTree = "<group>"; };
 		E5C389F82B81EB54003955B6 /* TTSplit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTSplit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5C389FB2B81EB54003955B6 /* TTSplitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSplitApp.swift; sourceTree = "<group>"; };
 		E5C389FD2B81EB54003955B6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,7 +38,7 @@
 		E5C38A022B81EB57003955B6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E5C38A162B81EE6A003955B6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E5C38A1D2B81F30A003955B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E5C38A1F2B81F3A0003955B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E5C38A1F2B81F3A0003955B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +61,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E57837232B822E580078BFAE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E57837282B822F5A0078BFAE /* UserModel.swift */,
+				E578372A2B822F7C0078BFAE /* GroupModel.swift */,
+				E578372C2B822F8F0078BFAE /* ExpenseModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E57837242B822E600078BFAE /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				E5C38A162B81EE6A003955B6 /* LoginView.swift */,
+				E5C389FD2B81EB54003955B6 /* ContentView.swift */,
+			);
+			path = VIews;
+			sourceTree = "<group>";
+		};
+		E57837252B822E6F0078BFAE /* Others */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
 		E5C389EF2B81EB54003955B6 = {
 			isa = PBXGroup;
 			children = (
@@ -75,12 +107,13 @@
 		E5C389FA2B81EB54003955B6 /* TTSplit */ = {
 			isa = PBXGroup;
 			children = (
+				E57837252B822E6F0078BFAE /* Others */,
+				E57837242B822E600078BFAE /* VIews */,
+				E57837232B822E580078BFAE /* Models */,
+				E5C38A1D2B81F30A003955B6 /* GoogleService-Info.plist */,
 				E5C38A1F2B81F3A0003955B6 /* Info.plist */,
 				E5C389FB2B81EB54003955B6 /* TTSplitApp.swift */,
-				E5C38A162B81EE6A003955B6 /* LoginView.swift */,
-				E5C389FD2B81EB54003955B6 /* ContentView.swift */,
 				E5C389FF2B81EB57003955B6 /* Assets.xcassets */,
-				E5C38A1D2B81F30A003955B6 /* GoogleService-Info.plist */,
 				E5C38A012B81EB57003955B6 /* Preview Content */,
 			);
 			path = TTSplit;
@@ -187,8 +220,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E578372D2B822F8F0078BFAE /* ExpenseModel.swift in Sources */,
 				E5C38A172B81EE6A003955B6 /* LoginView.swift in Sources */,
+				E578372B2B822F7C0078BFAE /* GroupModel.swift in Sources */,
 				E5C389FE2B81EB54003955B6 /* ContentView.swift in Sources */,
+				E57837292B822F5A0078BFAE /* UserModel.swift in Sources */,
 				E5C389FC2B81EB54003955B6 /* TTSplitApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
