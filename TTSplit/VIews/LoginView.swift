@@ -8,8 +8,11 @@
 import SwiftUI
 import FirebaseCore
 import FirebaseAuth
+import FirebaseFirestore
 
 struct LoginView: View {
+    var loginCompletion: () -> Void
+    
     @State private var email = ""
     @State private var password = ""
     var body: some View {
@@ -62,6 +65,12 @@ struct LoginView: View {
                 .padding(.top)
                 .offset(y: 100)
                 
+                Button {
+                    logout()
+                } label: {
+                    Text("Logout")
+                }
+                .offset(y: 100)
             }
         }
     }
@@ -69,6 +78,8 @@ struct LoginView: View {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if error != nil {
                 print(error!.localizedDescription)
+            } else {
+                loginCompletion()
             }
         }
     }
@@ -76,12 +87,36 @@ struct LoginView: View {
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if error != nil {
                 print(error!.localizedDescription)
+            } else if let result = result {
+                // Create a new user in the Firestore 'users' collection
+                let newUser = User(id: result.user.uid, name: "", email: self.email, groups: [])
+                self.createUserInFirestore(user: newUser)
+                loginCompletion()
+                
             }
             
         }
     }
+    func logout() {
+        let firebaseAuth = Auth.auth()
+        do {
+          try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
+        }
+    }
+    
+    func createUserInFirestore(user: User) {
+        let db = Firestore.firestore()
+        do {
+            try db.collection("users").document(user.id).setData(from: user)
+        } catch let error {
+            print("Error writing document: \(error)")
+        }
+    }
 }
 
-#Preview {
-    LoginView()
-}
+
+//#Preview {
+//    LoginView(loginCompletion: {() -> Void})
+//}
