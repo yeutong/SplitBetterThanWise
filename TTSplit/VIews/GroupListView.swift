@@ -15,22 +15,20 @@ struct GroupListView: View {
     @State private var showingAddGroupView = false  // State to control the presentation of the add group view
     
     var body: some View {
-        NavigationView {
-            List(viewModel.groups) { group in
-                Text(group.name)
-            }
-            .navigationBarTitle("My Groups")
-            .navigationBarItems(trailing: addButton)  // Add a navigation bar item
-            .onAppear {
-                viewModel.fetchGroups()
-            }
-            .sheet(isPresented: $showingAddGroupView) {
-                // Present AddGroupView as a modal sheet
-                AddGroupView { groupName in
-                    // Handle the new group name
-                    self.viewModel.addGroup(groupName: groupName)
-                    self.showingAddGroupView = false
-                }
+        List(viewModel.groups) { group in
+            Text(group.name)
+        }
+        .navigationBarTitle("My Groups")
+        .navigationBarItems(trailing: addButton)  // Add a navigation bar item
+        .onAppear {
+            viewModel.fetchGroups()
+        }
+        .sheet(isPresented: $showingAddGroupView) {
+            // Present AddGroupView as a modal sheet
+            AddGroupView { groupName in
+                // Handle the new group name
+                self.viewModel.addGroup(groupName: groupName)
+                self.showingAddGroupView = false
             }
         }
     }

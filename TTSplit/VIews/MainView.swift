@@ -9,36 +9,36 @@ import SwiftUI
 import FirebaseAuth
 
 struct MainView: View {
-    @StateObject private var viewModel = GroupViewModel()
-    @State private var isUserLoggedIn = false
-
+    
+    @State private var showSignInView: Bool = false
+    
     var body: some View {
-        NavigationView {
-            if isUserLoggedIn {
-                GroupListView(viewModel: viewModel)
-            } else {
-                LoginView(loginCompletion: handleLogin)
+        NavigationStack {
+            TabView {
+                GroupListView()
+                    .tabItem {
+                        Image(systemName: "house.fill")
+                        Text("Home")
+                    }
+                ProfileView(showSignInView: $showSignInView)
+                    .tabItem {
+                        Image(systemName: "person.fill")
+                        Text("Profile")
+                    }
             }
         }
         .onAppear {
-            // Set up the authentication state did change listener
-            self.listenToAuthenticationState()
+            let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+            self.showSignInView = authUser == nil
         }
-    }
-
-    private func listenToAuthenticationState() {
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if user != nil {
-                self.isUserLoggedIn = true
-            } else {
-                self.isUserLoggedIn = false
+        .fullScreenCover(isPresented: $showSignInView) {
+            NavigationStack {
+                LoginView(showSignInView: $showSignInView)
             }
         }
     }
-    
-    private func handleLogin() {
-        self.isUserLoggedIn = true
-    }
+
+
 }
 
 #Preview {

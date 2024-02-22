@@ -9,7 +9,7 @@ import Foundation
 
 struct User: Identifiable, Codable {
     var id: String // Use the Firebase UID as the id
-    var name: String
-    var email: String
-    var groups: [String] // Array of group IDs
+    var email: String?
+    var name: String = ""
+    var groups: [String] = [] // Array of group IDs
 }

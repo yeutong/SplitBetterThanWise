@@ -10,11 +10,12 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
 
+
 struct LoginView: View {
-    var loginCompletion: () -> Void
     
-    @State private var email = ""
-    @State private var password = ""
+    @StateObject private var viewModel = LoginViewModel()
+    @Binding var showSignInView: Bool
+    
     var body: some View {
         ZStack {
             VStack (spacing: 20) {
@@ -24,7 +25,7 @@ struct LoginView: View {
                     .font(.largeTitle)
                     .offset(x: -100, y: -100)
                 
-                TextField("Your Email", text: $email)
+                TextField("Your Email", text: $viewModel.email)
                     .foregroundColor(.black)
                     .textFieldStyle(PlainTextFieldStyle())
                     .padding(.leading, 20)
@@ -33,7 +34,7 @@ struct LoginView: View {
                     .frame(width: 350, height: 1)
                     .foregroundColor(.black)
                 
-                SecureField("Your Password", text: $password)
+                SecureField("Your Password", text: $viewModel.password)
                     .foregroundColor(.black)
                     .textFieldStyle(PlainTextFieldStyle())
                     .padding(.leading, 20)
@@ -43,7 +44,15 @@ struct LoginView: View {
                     .foregroundColor(.black)
                 
                 Button {
-                    register()
+                    Task {
+                        do {
+                            try await viewModel.signUp()
+                            showSignInView = false
+                            return
+                        } catch {
+                            print(error)
+                        }
+                    }
                 } label: {
                     Text("Sign up")
                         .bold()
@@ -57,7 +66,16 @@ struct LoginView: View {
                 .offset(y:100)
                 
                 Button {
-                    login()
+                    Task {
+                        do {
+                            try await viewModel.signIn()
+                            showSignInView = false
+                            return
+                        } catch {
+                            print(error)
+                        }
+                    }
+                    
                 } label: {
                     Text("Already have an account? Login")
                         .bold()
@@ -66,7 +84,13 @@ struct LoginView: View {
                 .offset(y: 100)
                 
                 Button {
-                    logout()
+                    Task {
+                        do {
+                            try viewModel.logout()
+                        } catch {
+                            print(error)
+                        }
+                    }
                 } label: {
                     Text("Logout")
                 }
@@ -74,49 +98,9 @@ struct LoginView: View {
             }
         }
     }
-    func login() {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            if error != nil {
-                print(error!.localizedDescription)
-            } else {
-                loginCompletion()
-            }
-        }
-    }
-    func register() {
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if error != nil {
-                print(error!.localizedDescription)
-            } else if let result = result {
-                // Create a new user in the Firestore 'users' collection
-                let newUser = User(id: result.user.uid, name: "", email: self.email, groups: [])
-                self.createUserInFirestore(user: newUser)
-                loginCompletion()
-                
-            }
-            
-        }
-    }
-    func logout() {
-        let firebaseAuth = Auth.auth()
-        do {
-          try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
-        }
-    }
-    
-    func createUserInFirestore(user: User) {
-        let db = Firestore.firestore()
-        do {
-            try db.collection("users").document(user.id).setData(from: user)
-        } catch let error {
-            print("Error writing document: \(error)")
-        }
-    }
 }
 
 
-//#Preview {
-//    LoginView(loginCompletion: {() -> Void})
-//}
+#Preview {
+    LoginView(showSignInView: .constant(true))
+}
