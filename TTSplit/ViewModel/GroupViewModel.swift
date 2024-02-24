@@ -34,22 +34,17 @@ class GroupViewModel: ObservableObject {
             }
     }
     
-    func addGroup(groupName: String) {
-        guard let userId = Auth.auth().currentUser?.uid else { return }
-        
-        let db = Firestore.firestore()
-        let groupRef = db.collection("groups").document() // Create a new document reference
-        
-        // Create a group with the current user as the initial member
-        let newGroup = Group(id: groupRef.documentID, name: groupName, members: [userId])
-        
-        // Convert the new group to a dictionary or use Codable to encode it
+    func addGroup(groupName: String, memberIDs: [String]) {
+        let groupRef = db.collection("groups").document()
+        let newGroup = Group(id: groupRef.documentID, name: groupName, members: memberIDs)
+
         do {
             try groupRef.setData(from: newGroup)
-            fetchGroups() // Refresh the groups list after adding the new group
+            fetchGroups()
         } catch let error {
             print("Error adding group: \(error)")
         }
     }
+
 }
 

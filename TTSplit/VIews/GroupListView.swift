@@ -10,34 +10,41 @@ import SwiftUI
 import FirebaseAuth
 import FirebaseFirestore
 
+
 struct GroupListView: View {
     @ObservedObject var viewModel = GroupViewModel()
-    @State private var showingAddGroupView = false  // State to control the presentation of the add group view
+    @State private var showingAddGroupView = false
     
     var body: some View {
-        List(viewModel.groups) { group in
-            Text(group.name)
-        }
-        .navigationBarTitle("My Groups")
-        .navigationBarItems(trailing: addButton)  // Add a navigation bar item
-        .onAppear {
-            viewModel.fetchGroups()
-        }
-        .sheet(isPresented: $showingAddGroupView) {
-            // Present AddGroupView as a modal sheet
-            AddGroupView { groupName in
-                // Handle the new group name
-                self.viewModel.addGroup(groupName: groupName)
-                self.showingAddGroupView = false
+        NavigationStack {
+            List(viewModel.groups) { group in
+                NavigationLink(destination: ExpensesView(group: group)) {
+                    Text(group.name)
+                }
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) { addButton }
+            }
+            .onAppear(perform: viewModel.fetchGroups)
+            .sheet(isPresented: $showingAddGroupView) {
+                AddGroupView { groupName, memberIDs in
+                    viewModel.addGroup(groupName: groupName, memberIDs: memberIDs)
+                    showingAddGroupView = false
+                }
+            }
+            .navigationTitle("My Groups")
         }
     }
     
     private var addButton: some View {
         Button(action: {
-            self.showingAddGroupView = true
+            showingAddGroupView = true
         }) {
             Image(systemName: "plus")
         }
     }
+}
+
+#Preview {
+    GroupListView()
 }

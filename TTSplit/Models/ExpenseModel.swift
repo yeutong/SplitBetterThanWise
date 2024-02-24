@@ -9,8 +9,11 @@ import Foundation
 
 struct Expense: Identifiable, Codable {
     var id: String // Firestore document ID
+    var groupId: String
     var description: String
-    var amount: Double
-    var paidBy: String // User ID of who paid
-    var splits: [String: Double] // Dictionary of user IDs and the amount they owe
+    var amount: Int
+    var paidBy: String = "" // User ID of who paid
+    var splits: [String: Int] = [:] // Dictionary of user IDs and the amount they owe
 }
+
+

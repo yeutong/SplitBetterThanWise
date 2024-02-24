@@ -10,7 +10,7 @@ import FirebaseAuth
 
 struct MainView: View {
     
-    @State private var showSignInView: Bool = false
+    @State var showSignInView: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -25,13 +25,14 @@ struct MainView: View {
                         Image(systemName: "person.fill")
                         Text("Profile")
                     }
+
             }
         }
         .onAppear {
             let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
             self.showSignInView = authUser == nil
         }
-        .fullScreenCover(isPresented: $showSignInView) {
+        .fullScreenCover(isPresented: .constant(false)) {
             NavigationStack {
                 LoginView(showSignInView: $showSignInView)
             }
