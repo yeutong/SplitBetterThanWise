@@ -3,37 +3,30 @@ import FirebaseFirestore
 
 struct ExpensesView: View {
     var group: Group
-    @State private var expenses: [Expense] = []
-    @State private var expenseDescription: String = ""
-    @State private var expenseAmount: String = "" // Using optional Int to handle empty or invalid inputs gracefully
-
-    private func fetchExpenses() {
-        let db = Firestore.firestore()
-        db.collection("expenses")
-            .whereField("groupId", isEqualTo: group.id) // Assuming each expense has a 'groupId' field
-            .addSnapshotListener { (querySnapshot, error) in
-                if let querySnapshot = querySnapshot {
-                    self.expenses = querySnapshot.documents.compactMap { document -> Expense? in
-                        try? document.data(as: Expense.self)
-                    }
-                }
-            }
-    }
+    @ObservedObject var viewModel: ExpensesViewModel
     
+    init(group: Group) {
+        self.group = group
+        self.viewModel = ExpensesViewModel(group: group)
+    }
+
 
         
     var body: some View {
         NavigationStack {
             VStack {
-                List(expenses) { expense in
-                   VStack(alignment: .leading) {
-                       Text(expense.description)
-                           .font(.headline)
-                       Text("Amount: \(expense.amount)")
-                           .font(.subheadline)
-                       Text("Paid by: \(expense.paidBy)")
-                           .font(.subheadline)
-                   }
+                List{
+                    ForEach(viewModel.expenses) { expense in
+                        VStack(alignment: .leading) {
+                            Text(expense.description)
+                                .font(.headline)
+                            Text("Amount: \(expense.amount)")
+                                .font(.subheadline)
+                            Text("Paid by: \(expense.paidBy)")
+                                .font(.subheadline)
+                        }
+                    }
+                    .onDelete(perform: viewModel.deleteExpense)
                 }
                 .navigationTitle("Expenses in \(group.name)")
                 .toolbar {
@@ -43,7 +36,7 @@ struct ExpensesView: View {
                 }
             }
             .onAppear {
-                fetchExpenses()
+                viewModel.fetchExpenses()
             }
         }
     }

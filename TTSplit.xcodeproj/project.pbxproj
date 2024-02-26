@@ -11,6 +11,7 @@
 		E50852C12B8886CE00151947 /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50852C02B8886CE00151947 /* ExpensesView.swift */; };
 		E5703DD82B8CBC8D00902616 /* AddExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5703DD72B8CBC8D00902616 /* AddExpenseViewModel.swift */; };
 		E5703DDA2B8CBC9800902616 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5703DD92B8CBC9800902616 /* AddExpenseView.swift */; };
+		E5703DDC2B8CCC4100902616 /* ExpensesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5703DDB2B8CCC4100902616 /* ExpensesViewModel.swift */; };
 		E57837292B822F5A0078BFAE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57837282B822F5A0078BFAE /* UserModel.swift */; };
 		E578372B2B822F7C0078BFAE /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E578372A2B822F7C0078BFAE /* GroupModel.swift */; };
 		E578372D2B822F8F0078BFAE /* ExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E578372C2B822F8F0078BFAE /* ExpenseModel.swift */; };
@@ -40,6 +41,7 @@
 		E50852C02B8886CE00151947 /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
 		E5703DD72B8CBC8D00902616 /* AddExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewModel.swift; sourceTree = "<group>"; };
 		E5703DD92B8CBC9800902616 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
+		E5703DDB2B8CCC4100902616 /* ExpensesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewModel.swift; sourceTree = "<group>"; };
 		E57837282B822F5A0078BFAE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E578372A2B822F7C0078BFAE /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		E578372C2B822F8F0078BFAE /* ExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseModel.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				E50852BE2B886B9300151947 /* UserViewModel.swift */,
 				E5F1E9D62B84BE8F007FA0C7 /* LoginViewModel.swift */,
 				E5703DD72B8CBC8D00902616 /* AddExpenseViewModel.swift */,
+				E5703DDB2B8CCC4100902616 /* ExpensesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				E578372B2B822F7C0078BFAE /* GroupModel.swift in Sources */,
 				E5C389FE2B81EB54003955B6 /* MainView.swift in Sources */,
 				E5F1E9D72B84BE8F007FA0C7 /* LoginViewModel.swift in Sources */,
+				E5703DDC2B8CCC4100902616 /* ExpensesViewModel.swift in Sources */,
 				E5703DDA2B8CBC9800902616 /* AddExpenseView.swift in Sources */,
 				E50852BF2B886B9300151947 /* UserViewModel.swift in Sources */,
 				E57837292B822F5A0078BFAE /* UserModel.swift in Sources */,
